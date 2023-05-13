@@ -1,8 +1,7 @@
 # Header
 menu:
-  主页/Home: /
-  关于我们/About Us: /About-us/
-  国际主页/Global Home: https://nya-wsl.com 
+  ホームページ/Home: /
+  このサイトについて/About Us: /About-us/
 
 # 主页banner图
 banner: /index.jpg
@@ -12,7 +11,7 @@ notice: 如有疑问，请联系support@nya-wsl.com
 # 作者信息
 author:
   name: Nya-WSL
-  avatar: https://nya-wsl.osttsstudio.ltd/nya_wsl/author.jpg
+  avatar: https://qn.nya-wsl.cn/nya_wsl/author.jpg
   description: 代码没写完，哪有脸睡觉
 
 toc:
@@ -60,7 +59,7 @@ aplayer:
   lrcType: 3
 
 # 国内备案信息
-beian: 渝ICP备2021004144号-2
+beian: 
 
 # 谷歌分析
 google_analytics: 
@@ -80,6 +79,6 @@ social_icon:
     ins     :
     zhihu   :
     weibo   :
-    github  : https://github.com/Nya-WSL/
+    github  : https://github.com/nya-wsl/
     bilibili : https://www.bilibili.com
     twitter : https://twitter.com/HRK_Takahashi

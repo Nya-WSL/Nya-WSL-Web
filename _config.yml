@@ -8,12 +8,12 @@ subtitle: 'We are all stories in the end.'
 description: ''
 keywords:
 author: 高橋はるき & 狐日泽
-language: zh-CN
+language: ja
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://nya-wsl.cn
+url: https://nya-wsl.com
 permalink: :title/
 permalink_defaults:
 pretty_urls:
@@ -27,7 +27,7 @@ tag_dir: tags
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
-i18n_dir: themes/flex-block/language
+i18n_dir: :lang
 skip_render:
 
 # Writing
