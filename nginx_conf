@@ -1,0 +1,97 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	return 301 https://nya-wsl.com/blocked;
+
+#	root /opt/hexo/public;
+
+#	index index.html index.htm index.nginx-debian.html;
+
+#	server_name nya-wsl.com;
+
+#	location / {
+#		try_files $uri $uri/ =404;
+#	}
+}
+server {
+	listen 80;
+        listen [::]:80;
+	if ($host = nya-wsl.com) {
+        return 301 https://$host$request_uri;
+}
+        if ($host = www.nya-wsl.com) {
+        return 301 https://$host$request_uri;
+}
+
+	root /opt/hexo/public;
+        
+        index index.html index.htm index.nginx-debian.html;
+        
+        server_name nya-wsl.com www.nya-wsl.com;
+        
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+
+server {
+	listen 404;
+	server_name nya-wsl.com;
+
+	root /var/www/html;
+	index index.html;
+}
+
+server {
+	root /opt/hexo/public;
+	server_name nya-wsl.com www.nya-wsl.com;
+
+	index index.html index.htm index.nginx-debian.html;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+    listen 443 ssl;# managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/nya-wsl.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/nya-wsl.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+server {
+    listen 443 ssl default_server;
+    return https://nya-wsl.com/blocked;    
+    ssl_certificate /etc/letsencrypt/live/nya-wsl.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/nya-wsl.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+	location /blocked {
+		root /var/www/html;
+}
+}
+
+server {
+    if ($host = nya-wsl.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+#    if ($host != 'nya-wsl.com') {
+#	rewrite ^/(.*)$ https://nya-wsl.com/$1 permanent;
+#    }
+#
+#	listen 80 ;
+#	listen [::]:80 ;
+#    server_name _;
+#    return 404; # managed by Certbot
+}
+
+server {
+	listen 19160;
+	server_name 160.251.77.96;
+	index index.html;
+	
+	location / {
+		proxy_pass http://0.0.0.0:19159;
+		proxy_set_header Host $proxy_host; # 修改转发请求头，让8080端口的应用可以受到真实的请求
+    		proxy_set_header X-Real-IP $remote_addr;
+    		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+}
